@@ -6,17 +6,21 @@ import random
 # remain = 100 - len(final_data)
 
 print("Please give AI some data to learn...")
-final_data = ''  # declare and initialise empty final_data string for use in while loop
-while len(final_data) < 100:
-    current = len(final_data)
-    remain = 100 - len(final_data)
-    print(
-        f'Current data length is {len(final_data)}, {100 - len(final_data)} symbols left.')
-    input_data = input('Print a random string containing 0 or 1: ')
-    # filters out 0 and 1 from user into filter_str
-    final_data = final_data.join(x for x in input_data if x in '01')
-else:
-    print(f'Final data string:\n{final_data}\n')
+
+
+def datastring():
+    final_data = ''
+    while len(final_data) < 10:
+        print(
+            f'Current data length is {len(final_data)}, {10 - len(final_data)} symbols left')
+        input_data = input('Print a random string containing 0 or 1: ')
+        final_data += ''.join(x for x in input_data if x in '01')
+    return final_data
+
+
+final_data = datastring()
+
+print(f'Final data string:\n{final_data}\n')
 
 #########################################################################
 
