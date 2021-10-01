@@ -1,15 +1,14 @@
 import random
 
-print("Please give AI some data to learn...")
+# print("Please give AI some data to learn...")
 
 
 class GenerateRandom():
     def __init__(self):
-        self.test = ''
-        self.data = ''
-        self.split = self.counts = self.probs = None
+        self.test = self.data = self.prediction = ''
+        self.split = self.counts = self.probs = self.correct = None
         self.bank = 1000
-        self.prediction = ''
+        self.gameover = False
 
     def inputData(self, inputs):
         """inputFilter('user input', data or test)\n
@@ -51,6 +50,7 @@ class GenerateRandom():
         for i in range(len(self.test)):
             if self.test[i] == self.prediction[i]:
                 self.correct += 1
+        self.bank -= self.correct
 
 
 # Calculates percentage of correct guesses
@@ -64,6 +64,7 @@ game.inputData(
 game.triadProb()
 game.inputTest('001010101010100110110100101')
 game.Predictor()
+game.isMatch()
 
 # game.data
 # game.test
