@@ -3,19 +3,23 @@ import random
 print("Please give AI some data to learn...")
 
 
-class GenerateRandom:
+class GenerateRandom():
     def __init__(self):
+        self.test = ''
         self.data = ''
         self.split = self.counts = self.probs = None
         self.bank = 1000
-        self.test = ''
         self.prediction = ''
 
-    def inputFilter(self, inputs):
+    def inputData(self, inputs):
         """inputFilter('user input', data or test)\n
         Filters only 0 and 1 from user input into a string"""
         self.data += ''.join(x for x in inputs if x in '01')
         return self.data
+
+    def inputTest(self, inputs):
+        self.test += ''.join(x for x in inputs if x in '01')
+        return self.test
 
     def triadProb(self):
         """Splits input from user into four character slices, counts the number of 1 or 0
@@ -28,15 +32,40 @@ class GenerateRandom:
         self.probs = {key: (value[0] + 0.0001) / (value[0] + value[1] + 0.0001)
                       for key, value in self.counts.items()}
 
-    def Predict(self):
+    def Predictor(self):
         for i in range(3):
-            self.prediction += random.choice('01')
-        if len()
+            self.prediction += random.choice('10')
+        if len(self.test) > 3:
+            for i in range(len(self.test) - 3):
+                triadkey = self.probs[self.test[i: i + 3]]
+                if triadkey > 0.5:
+                    self.prediction += '0'
+                elif triadkey < 0.5:
+                    self.prediction += '1'
+                else:
+                    self.prediction += random.choice('01')
+
+
+# game = GenerateRandom()
+# game.inputData('010100100101010101000010001010101010100100100101001011010001011111100101010100011001010101010010001001010010011')
+# game.triadProb()
+# game.inputTest('001010101010100110110100101')
+# game.Predictor()
+
+# game.data
+# game.test
+# game.probs
+# game.prediction
+
+    # def Predict(self):
+    #     for i in range(3):
+    #         self.prediction += random.choice('01')
+    #     if len()
 
         # game = GenerateRandom()
 
         # while len(game.data) < 10:
         #     print(
         #         f'Current data length is {len(game.data)}, {10 - len(game.data)} symbols left')
-        #     game.inputFilter(input('Print a random string containing 0 or 1: '))
+        #     game.inputData(input('Print a random string containing 0 or 1: '))
         # print(f'Final data string:\n{game.data}')
