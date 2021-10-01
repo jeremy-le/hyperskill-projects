@@ -33,6 +33,7 @@ class GenerateRandom():
                       for key, value in self.counts.items()}
 
     def Predictor(self):
+        """Makes a prediction based on probability dictionary"""
         for i in range(3):
             self.prediction += random.choice('10')
         if len(self.test) > 3:
@@ -45,27 +46,39 @@ class GenerateRandom():
                 else:
                     self.prediction += random.choice('01')
 
+    def isMatch(self):
+        self.correct = 0
+        for i in range(len(self.test)):
+            if self.test[i] == self.prediction[i]:
+                self.correct += 1
 
-# game = GenerateRandom()
-# game.inputData('010100100101010101000010001010101010100100100101001011010001011111100101010100011001010101010010001001010010011')
-# game.triadProb()
-# game.inputTest('001010101010100110110100101')
-# game.Predictor()
+
+# Calculates percentage of correct guesses
+# percentage = round(correct / len(final_test) * 100, 2)
+# print(f'Computer guessed right {correct} out of {len(final_test)} symbols ({percentage} %)')
+
+
+game = GenerateRandom()
+game.inputData(
+    '010100100101010101000010001010101010100100100101001011010001011111100101010100011001010101010010001001010010011')
+game.triadProb()
+game.inputTest('001010101010100110110100101')
+game.Predictor()
 
 # game.data
 # game.test
 # game.probs
 # game.prediction
 
-    # def Predict(self):
-    #     for i in range(3):
-    #         self.prediction += random.choice('01')
-    #     if len()
+# def Predict(self):
+#     for i in range(3):
+#         self.prediction += random.choice('01')
+#     if len()
 
-        # game = GenerateRandom()
+# game = GenerateRandom()
 
-        # while len(game.data) < 10:
-        #     print(
-        #         f'Current data length is {len(game.data)}, {10 - len(game.data)} symbols left')
-        #     game.inputData(input('Print a random string containing 0 or 1: '))
-        # print(f'Final data string:\n{game.data}')
+# while len(game.data) < 10:
+#     print(
+#         f'Current data length is {len(game.data)}, {10 - len(game.data)} symbols left')
+#     game.inputData(input('Print a random string containing 0 or 1: '))
+# print(f'Final data string:\n{game.data}')
